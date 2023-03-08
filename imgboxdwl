@@ -78,7 +78,7 @@ for url in $(curl -s "${gallery_url}" | grep -E -o 'thumbs[0-9]+.*"' | tr -d '"'
 	printf -v link "https://imgbox.com/%s" $(extract_name "${url}")
 	temp=$(curl -s "${link}" | grep -E -o 'https?.*download=true')
 
-	curl -O -# ${temp%%\?*}
+	printf ${temp%%\?*}
 done
 
 printf "\\n\\n%s images were saved to folder %s/\\n\\n" $(find . -type f | wc -l) "${gallery_name}"
